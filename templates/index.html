@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Welcome Page</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet"> -->
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'dashboard/login.css' %}"> 
+</head>
+
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <form style="height: auto; padding: 40px 35px; text-align: center;">
+        <h3>Welcome to Diocese of DE Dashboard</h3>
+        <p style="margin-top: 20px; font-size: 16px; font-weight: 300;">Choose an option to get started.</p>
+
+        <div style="margin-top: 40px;">
+            <a href="{% url 'login' %}">
+                <button type="button" style="margin-bottom: 20px;">Login</button>
+            </a>
+            <a href="{% url 'signup' %}">
+                <button type="button">Sign Up</button>
+            </a>
+        </div>
+    </form>
+</body>
+
+</html>

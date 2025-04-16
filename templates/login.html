@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login Page</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet"> -->
+
+    <!-- Load External CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'dashboard/login.css' %}">
+   
+</head>
+
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <form method="post">
+        <h3>Login Here</h3>
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input type="text" placeholder="Enter Username" id="username" name="username">
+
+        <label for="password">Password</label>
+        <div class="password-container">
+            <input type="password" placeholder="Password" id="password" name="password">
+            <span class="toggle-password" onclick="togglePassword('password', this)">
+                <i class="fas fa-eye"></i>
+            </span>
+        </div>
+
+        <button type="submit">Log In</button>
+        <a href="{% url 'signup' %}">Create an account</a>
+    </form>
+
+     
+     <!-- <div id="react-root"></div> -->
+
+     <!-- These must be loaded from Vite directly -->
+     <!-- <script type="module">
+         import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+         RefreshRuntime.injectIntoGlobalHook(window)
+         window.$RefreshReg$ = () => {}
+         window.$RefreshSig$ = () => (type) => type
+         window.__vite_plugin_react_preamble_installed__ = true
+       </script> -->
+       
+       <!-- Vite client for hot-reloading -->
+       <!-- <script type="module" src="http://localhost:5173/@vite/client"></script> -->
+       
+       <!-- Main React entry point -->
+       <!-- <script type="module" src="http://localhost:5173/src/main.jsx"></script> -->
+       
+    <script>
+        function togglePassword(fieldId, iconSpan) {
+            let passwordField = document.getElementById(fieldId);
+            let icon = iconSpan.querySelector("i");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+    </script>
+    
+</body>
+</html>

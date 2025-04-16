@@ -9,11 +9,14 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    const res = await axios.post("http://localhost:8000/api/auth/login/", { username, password });
-    localStorage.setItem("token", res.data.access);
-    navigate("/dashboard");
-  };
-
+    try {
+        const res = await axios.post("http://localhost:8000/api/auth/login/", { username, password });
+        localStorage.setItem("token", res.data.access);
+        navigate("/dashboard");
+      } catch (error) {
+        toast.error("Login failed. Please try again.");
+      }
+    };
   return (
     <div>
       <h2>Login</h2>

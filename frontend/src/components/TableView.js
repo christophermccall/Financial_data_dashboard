@@ -1,15 +1,23 @@
 export default function TableView({ data }) {
-    if (!data.length) return null;
-    const headers = Object.keys(data[0]);
+    if (!Array.isArray(data)) {
+      return <p>No table data available</p>;
+    }
+  
     return (
-      <table border="1">
+      <table>
         <thead>
-          <tr>{headers.map((h) => <th key={h}>{h}</th>)}</tr>
+          <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Amount</th>
+          </tr>
         </thead>
         <tbody>
-          {data.map((row, i) => (
-            <tr key={i}>
-              {headers.map((h) => <td key={h}>{row[h]}</td>)}
+          {data.map((row, index) => (
+            <tr key={index}>
+              <td>{row.date}</td>
+              <td>{row.category}</td>
+              <td>{row.amount}</td>
             </tr>
           ))}
         </tbody>

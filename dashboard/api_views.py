@@ -5,9 +5,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from .models import FinancialData
+from rest_framework.permissions import IsAuthenticated
 
 class UploadCSVView(APIView):
     parser_classes = [MultiPartParser]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, format=None):
         file_obj = request.FILES.get("file")
@@ -33,6 +35,8 @@ class UploadCSVView(APIView):
 
 
 class FinancialDataView(APIView):
+    permission_classes = [IsAuthenticated]
+    
     def get(self, request):
         data = FinancialData.objects.all().values("date", "category", "amount")
         return Response(list(data))

@@ -58,7 +58,25 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_WHITELIST = [
+  'http://localhost:3000',  # Your React frontend's URL
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:8000",
+]
+
 CORS_ALLOW_ALL_ORIGINS = True 
+
+CSRF_COOKIE_SECURE = False  # For development (set to True for production)
+CSRF_COOKIE_HTTPONLY = True
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -144,10 +162,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_REDIRECT_URL = 'http://localhost:3000/dashboard'
 LOGOUT_REDIRECT_URL = '/login/'
 
-# CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',  # optional default
+    ),
 }

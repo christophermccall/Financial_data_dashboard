@@ -3,6 +3,8 @@ from django.contrib.auth import views as auth_views
 from . import api_views
 from . import views
 from .api_views import UploadCSVView, FinancialDataView
+from .views import get_csrf_token
+
 
 urlpatterns = [
     path('dashboard/upload/', UploadCSVView.as_view(), name='upload-csv'),
@@ -16,4 +18,5 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     # path('login/', views.login_view, name='login'),
     path('signup/', views.SignupPage, name='signup'),
+    path('api/csrf/', get_csrf_token),
 ]

@@ -49,34 +49,50 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    
 ]
 
+# CSRF & CORS
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
-
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ORIGIN_WHITELIST = [
-  'http://localhost:3000',  # Your React frontend's URL
-]
-
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
-    "http://localhost:8000",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True 
+# These help during local dev
+CSRF_COOKIE_HTTPONLY = False  # allows JS to read it
+CSRF_COOKIE_SAMESITE = "Lax"
+# CSRF_COOKIE_SECURE = False  # should be True in production
 
-CSRF_COOKIE_SECURE = False  # For development (set to True for production)
-CSRF_COOKIE_HTTPONLY = True
+
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+# ]
+
+# CORS_ALLOW_CREDENTIALS = True
+
+# CORS_ORIGIN_WHITELIST = [
+#   'http://localhost:3000',  # Your React frontend's URL
+# ]
+
+# CSRF_TRUSTED_ORIGINS = [
+#     "http://localhost:3000",
+#     "http://localhost:8000",
+# ]
+
+# CORS_ALLOW_ALL_ORIGINS = True 
+
+# CSRF_COOKIE_SECURE = False  # For development (set to True for production)
+# CSRF_COOKIE_HTTPONLY = False
 
 ROOT_URLCONF = 'backend.urls'
 

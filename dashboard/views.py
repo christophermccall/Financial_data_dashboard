@@ -6,8 +6,14 @@ from django.contrib.messages import get_messages
 from .models import UserActivity
 import logging
 
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.http import JsonResponse
 
-import logging
+@ensure_csrf_cookie
+def get_csrf_token(request):
+    return JsonResponse({"message": "CSRF cookie set"})
+
+
 logger = logging.getLogger(__name__)
 
 # Create your views here.

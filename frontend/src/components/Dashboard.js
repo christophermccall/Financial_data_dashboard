@@ -153,7 +153,7 @@ export default function Dashboard() {
       </div>
   
       <div>
-        <ChartsView data={chartData} />
+        <ChartsView data={tableData} />
       </div>
     </div>
   );

@@ -4,6 +4,8 @@ import TableView from "./TableView";
 import ChartsView from "./ChartsView";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 axios.defaults.withCredentials = true;
 
@@ -114,6 +116,8 @@ export default function Dashboard() {
 
   return (
     <div className="container py-4">
+    <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop={false} />
+
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2 className="text-primary">📊 Diocese of DE Dashboard</h2>
         <button onClick={handleLogout} className="btn btn-outline-danger">

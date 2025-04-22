@@ -113,24 +113,44 @@ export default function Dashboard() {
   };
 
   return (
-    <div>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h2>Diocese of DE Dashboard</h2>
-        <button onClick={handleLogout} className="logout-button">
+    <div className="container py-4">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="text-primary">📊 Diocese of DE Dashboard</h2>
+        <button onClick={handleLogout} className="btn btn-outline-danger">
           Logout
         </button>
       </div>
-
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
-      <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-      <button onClick={uploadFile} disabled={loading}>
-        {loading ? "Uploading..." : "Upload CSV"}
-      </button>
-
-      <TableView data={tableData} />
-      <ChartsView data={chartData} />
+  
+      {loading && <div className="alert alert-info">Loading...</div>}
+      {error && <div className="alert alert-danger">{error}</div>}
+  
+      <div className="card mb-4 shadow-sm">
+        <div className="card-body">
+          <h5 className="card-title mb-3">Upload Event CSV</h5>
+          <div className="d-flex gap-3 align-items-center">
+            <input
+              type="file"
+              onChange={(e) => setFile(e.target.files[0])}
+              className="form-control"
+            />
+            <button
+              onClick={uploadFile}
+              disabled={loading}
+              className="btn btn-success"
+            >
+              {loading ? "Uploading..." : "Upload CSV"}
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <div className="mb-5">
+        <TableView data={tableData} />
+      </div>
+  
+      <div>
+        <ChartsView data={chartData} />
+      </div>
     </div>
   );
-}
+}  

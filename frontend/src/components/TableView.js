@@ -1,15 +1,22 @@
+import React from "react";
+
 export default function TableView({ data }) {
-    if (!Array.isArray(data)) {
-      return <p>No table data available</p>;
-    }
-  
+  if (!Array.isArray(data) || data.length === 0) {
     return (
-      <table>
-        <thead>
+      <div className="alert alert-warning text-center">
+        No table data available
+      </div>
+    );
+  }
+
+  return (
+    <div className="table-responsive shadow rounded-3 overflow-hidden">
+      <table className="table table-hover table-bordered align-middle mb-0">
+        <thead className="table-primary text-center">
           <tr>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Amount</th>
+            <th scope="col"> Date</th>
+            <th scope="col"> Category</th>
+            <th scope="col"> Amount</th>
           </tr>
         </thead>
         <tbody>
@@ -17,11 +24,11 @@ export default function TableView({ data }) {
             <tr key={index}>
               <td>{row.date}</td>
               <td>{row.category}</td>
-              <td>{row.amount}</td>
+              <td>${parseFloat(row.amount).toFixed(2)}</td>
             </tr>
           ))}
         </tbody>
       </table>
-    );
-  }
-  
+    </div>
+  );
+}
